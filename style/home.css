@@ -1,0 +1,814 @@
+:root {
+    --background: #f4ede5;
+    --text: #8d7e7e; 
+    --foreground: white;
+    --foresep: #f1f1f1;
+    --sidenav: url(../assets/menu.svg);
+    --comment: url(../assets/comment.svg);
+    --comment_h: url(../assets/comment_h.svg);
+    --like: url(../assets/like.svg);
+    --liked: url(../assets/like_d.svg);
+    --like_h: url(../assets/like_h.svg);
+    --close: url(../assets/close.svg);
+}
+
+
+
+body {
+    display:flex;
+    justify-content: left;
+    align-items: center;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    background-image: url('https://wallpaperaccess.com/full/1891374.jpg');
+    overflow-x: hidden;
+   transition: background 0.2s ease;
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    max-width: 1000px;
+    padding-top: 77px;
+    width: 100%;
+}
+
+iframe {
+    border: 0;
+}
+
+#profile {
+    box-sizing: border-box;
+    background-color: rgb(118, 32, 32);
+    border-radius: 5px;
+    text-align: center;
+    padding: 15px;
+}
+
+#profile .name, #profile .count {
+    color: white;
+    font-size: 18px;
+    font-weight: 900;
+}
+
+
+#profile .avatar {
+    display: inline-block;
+    height: 150px;
+    width: 150px;
+    border-radius: 100%;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 8px;
+}
+
+#profile .stats {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 20px;
+    padding-top: 20px;
+}
+
+#profile .stats > div {
+    width: 32%;
+    user-select: none; 
+    -webkit-user-select: none;
+    -khtml-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none;
+}
+
+#profile #view_followers, #profile #view_following {
+    cursor: pointer;
+}
+
+#profile  .followbox {
+    border-top: 1px solid var(--foresep);
+    margin-top: 10px;
+}
+
+#profile .followbox button {
+    background: #37ca93;
+    border: 0;
+    padding: 8px 22px;
+    border-radius: 50px;
+    color: var(--foreground);
+    font-weight: 700;
+    margin-top: 13px;
+    border: 2px solid #37ca93;
+    transition: background ease 0.2s, color ease 0.2s;
+    cursor: pointer;
+    outline-width: 0;
+}
+
+#profile .unfollow button {
+    background: #bdac98;
+    border-color: #bdac98;
+}
+
+#profile .followbox button:hover {
+    background: transparent;
+    color: #37ca93;
+}
+
+#profile .unfollow button:hover {
+    color: #bdac98;
+}
+
+#profile .verified, .post .verified, #sidenav .verified, #suggestion .verified, #modal .verified {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    background-size: 16px 16px;
+    background: url(../assets/verified.svg) center no-repeat;
+    vertical-align: bottom;
+    margin-bottom: 5px;
+}
+
+.post .verified, #suggestion .verified, #modal .verified {
+    margin-bottom: 4px;
+    background-size: 14px 14px;
+    width: 14px;
+    height: 14px;
+    margin-left: 4px;
+    padding-top: 0;
+}
+
+.comments .verified {
+    margin-bottom: 5px;
+    background-size: 12px 12px;
+    width: 12px;
+    height: 12px;
+}
+
+#sidenav .verified {
+    margin-bottom: 3px;
+}
+
+#profile, .ghost_profile {
+    width: 26%;
+}
+
+#feed, .ghost_feed {
+    width: 44%;
+    flex-shrink: 1;
+}
+
+#feed {
+    z-index: 3;
+}
+
+
+main > section {
+    margin: 7px;
+    margin-bottom: 0;
+    flex-shrink: 0;
+    flex-grow: 0;
+}
+
+.fixed {
+    position: fixed;
+}
+
+
+
+/* POST */
+
+.post {
+    padding: 10px;
+    background: var(--foreground);
+    border-radius: 5px;
+    margin-bottom: 14px;
+}
+
+.userinfo img {
+    max-width: 40px;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.userinfo {
+    display: flex;
+    flex-direction: row; 
+    justify-content: left;
+    margin-bottom: 12px;
+}
+
+.userinfo .names {
+    margin-left: 12px;
+    width: 0;
+    flex-grow: 1;
+    overflow: hidden;
+}
+
+.userinfo .username {
+    line-height: 13px;
+    font-size: 14px;
+}
+
+.userinfo .name {
+    color: black;
+    font-size: 16px;
+    font-weight: 700;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.userinfo a {
+    text-decoration: none;
+    color: var(--text);
+}
+
+.userinfo a:hover .name {
+    text-decoration: underline;
+}
+
+.userinfo .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.post .content img {
+    width: 100%;
+}
+
+.post .text {
+    font-size: 15px;
+    margin-top: 12px;
+    text-align: justify;
+    margin-bottom: 5px;
+    white-space: pre-wrap;
+}
+
+.post .content {
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.post .time {
+    margin-left: auto;
+    font-size: 14px;
+    color: #b2b2b2;
+    flex-shrink: 0;
+    padding-left: 10px;
+    padding-top: 1px;
+}
+
+.actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 13px;
+}
+
+.actions > * {
+    padding-left: 3px;
+}
+
+.post .like, .post .comment, .post .liked {
+   
+    line-height: 17px;
+    transition: 0.2s ease all, 0.1s ease transform;
+    margin-left: 7px;
+    cursor: pointer;
+    border-radius: 3px;
+    user-select: none; 
+   -webkit-user-select: none;
+   -khtml-user-select: none; 
+   -moz-user-select: none; 
+   -ms-user-select: none;
+}
+
+.post .like:hover, .post .comment:hover {
+    color: black;
+}
+
+.post .like {
+    background: var(--like) 8px center no-repeat var(--background);
+    background-size: 17px;
+}
+
+.post .liked {
+    background: var(--liked) 8px center no-repeat var(--background);
+    background-size: 17px;
+    color: #f60d28;
+}
+
+.post .like, .post .liked {
+    padding-left: 30px;
+}
+
+.post .like span, .post .liked span {
+    padding: 5px  10px  5px 0;
+    display: inline-block;
+}
+
+.post .like:hover {
+    background: var(--like_h) 8px center no-repeat var(--background);
+    background-size: 17px;
+}
+
+.post .comment {
+    padding: 5px  10px  5px 30px;
+    background: var(--comment) 8px center no-repeat var(--background);
+    background-size: 17px;
+}
+
+.post .comment:hover {
+    background: var(--comment_h) 8px center no-repeat var(--background);
+    background-size: 17px;
+}
+
+.post .like:active, .post .liked:active {
+    transform: scale(1.15);
+}
+
+.post .action {
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-top: 5px;
+}
+
+.the_end {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.the_end img {
+    width: 100px;
+}
+
+/* TEXT POST */
+.post.text > .text {
+    font-size: 17px;
+    text-align: left;
+}
+
+.post.text .content {
+    display: none;
+}
+
+
+/* SPOTIFY POST */
+.post.spotify .content .track {
+    display: flex;
+    flex-grow: 1;
+    justify-content: left;
+    background: var(--background) right bottom no-repeat;
+    border-radius: 4px;
+    transition: background-image 0.2s ease;
+}
+
+.post.spotify .content img {
+    height: 100%;
+    width: auto;
+    border-radius: 4px 0 0 4px;
+    flex-shrink: 0;
+}
+
+.post.spotify .content .track {
+    color: var(--text);
+    text-decoration: none;
+    height: 130px; 
+}
+
+.post.spotify .track_iframe {
+    width: 100%;
+    height: 80px;
+}
+
+.post.spotify .content .track:hover {
+    background: var(--background) url(../assets/spotify.svg) right 10px bottom 10px no-repeat;
+    background-size: 18px 18px;
+}
+
+
+.post.spotify .content .track .name {
+    color: var(--hl_text);
+    font-weight: 700;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    line-height: 15px;
+    overflow: hidden;
+    max-height: 90px;
+}
+
+.post.spotify .content .track .author {
+    font-size: 13px;
+    padding-left: 10px;
+    padding-right: 10px;
+    overflow: hidden;
+    max-height: 18px;
+}
+
+
+
+/* COMMENTI */
+.comments {
+    height: 0;
+    overflow: hidden;
+    transition: height 0.3s ease;
+}
+.comments form {
+    margin: 0;
+    margin-top: 10px;
+}
+
+.comments input[type=text] {
+    width: 100%;
+    padding: 7px;
+    border-radius: 4px;
+    background: var(--background);
+    color: var(--text);
+    box-shadow: none;
+    transition: border ease 0.2s;
+    border: 2px solid var(--background);
+    padding-right: 35px;
+}
+
+.comments input[type=text]:focus {
+    border-color: var(--hl_text);
+    outline-width: 0;
+}
+
+.comments input[type=submit] {
+    display: none;
+}
+
+.comment_form {
+    position: relative;
+}
+
+.comment_form .emotes {
+    width: 17px;
+    height: 17px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent no-repeat center;
+    background-size: 17px 17px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.comments .past_messages {
+    max-height: 171px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 4px;
+    border-top: 2px solid var(--foresep);
+    margin-top: 10px;
+}
+
+
+
+/* Track */
+.past_messages::-webkit-scrollbar-track {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: rgba(0,0,0,0.1); 
+}
+ 
+/* Handle */
+.past_messages::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: rgba(0,0,0,0.7); 
+}
+.past_messages::-webkit-scrollbar-thumb:window-inactive {
+	background: rgba(0,0,0,0.4)
+}
+
+.comments .past_messages > div:first-child {
+    padding-top: 10px;
+}
+
+.comments .past_messages > div:last-child > .text {
+    padding-bottom: 0px;
+}
+
+.comments .avatar {
+    width: 22px;
+    height: 22px;
+}
+
+.comments .text {
+    padding-top: 0;
+    padding-bottom: 10px;
+    margin-top: 0;
+    padding-left: 30px;
+    font-size: 14px;
+    text-align: left;
+}
+
+.comments .emote {
+    display: inline-block;
+    width: 28px;
+    position: relative;
+}
+
+.comments .text img {
+    position: absolute;
+    bottom: -10px;
+}
+
+.comments .userinfo {
+    padding: 0;
+    margin-bottom: 0;
+}
+
+.comments .userinfo a:hover {
+    text-decoration: underline;
+}
+
+.comments .username {
+    color: var(--hl_text);
+    font-weight: 700;
+    line-height: 22px;
+    padding-left: 5px;
+}
+
+.comments .time {
+    line-height: 22px;
+}
+
+
+
+/* FINESTRA MODALE LIKES */
+#modal.hidden, #modal .hidden {
+    display: none !important;
+}
+
+#modal.invisible, #modal .invisible {
+    opacity: 0 !important;
+}
+
+#modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,0.3);
+    z-index: 77;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    transition: opacity ease 0.5s;
+}
+
+#modal .window {
+    border-radius: 7px;
+    background: var(--foreground);
+    padding: 12px;
+    position: relative;
+    transition: opacity ease 0.5s, transform ease 0.5s;
+    box-shadow: 0 0 8px var(--shadow);
+    transform: translateY(0) scale(1);
+    width: 300px;
+}
+
+#modal.invisible .window {
+    transform: translateY(100vh) scale(0);
+}
+
+#modal button {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    font-size: 0;
+    border: 0;
+    outline-width: 0;
+    background: var(--close) center center no-repeat;
+    background-size: 20px 20px;
+    top: 12px;
+    left: 12px;
+    cursor: pointer;
+}
+
+#modal span {
+    padding-top: 15px;
+}
+
+#modal .modal_desc {
+    text-align: center;
+    padding-bottom: 16px;
+}
+
+#modal_place {
+    max-height: 80vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.om {
+    overflow-y: hidden;
+}
+
+.om > * {
+    padding-right: var(--scrollbar-width);
+}
+
+
+
+/* NAVBAR */
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    height: 70px;
+    border-radius: 0 0 5px 5px; 
+    position: fixed;
+    top: 0;
+    z-index: 4;
+}
+
+header nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 986px;
+}
+
+nav .l_nav {
+    padding-right: 20px;
+}
+
+nav .r_nav {
+    text-align: right;
+    padding: 10px 0;
+    padding-right: 20px;
+}
+
+nav .r_nav a {
+    background:black;
+    font-weight: 700;
+    color:white;
+    border-radius: 7px;
+    line-height: 50px;
+    padding: 9px 15px;
+    transition: background 0.2s ease;
+}
+
+nav .r_nav a:hover {
+    background: var(--text);
+    color: rgb(118, 32, 32);
+}
+
+nav h1 {
+    padding: 0 20px;
+    line-height: 70px;
+    margin: 0;
+    display: inline-block;
+    color: rgb(95,0,0);
+    font-size: 23px;
+    font-weight: 900;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text);
+    line-height: 30px;
+    padding: 0 10px;
+}
+
+nav a.here {
+    color: var(--hl_text);
+    font-weight: 700;
+}
+
+nav a:hover {
+    color: var(--hl_text);
+}
+
+#s_nav {
+    display: none;
+    height: 70px;
+    width: 70px;
+    background: var(--sidenav) center center no-repeat;
+    background-size: 24px 24px;
+}
+
+
+/* MENU LATERALE */
+#sidenav.hidden, #sidenav .hidden {
+    display: none !important;
+}
+
+#sidenav.invisible, #sidenav .invisible {
+    opacity: 0 !important;
+}
+
+#sidenav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,0.3);
+    z-index: 77;
+    display: flex;
+    justify-content: left;
+    align-items: flex-start;
+    opacity: 1;
+    transition: opacity ease 0.2s;
+}
+
+#sidenav_content {
+    background: var(--foreground);
+    position: relative;
+    transition: opacity ease 0.5s, transform ease 0.5s;
+    box-shadow: 0 0 8px var(--shadow);
+    height: 100%;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    text-align: center;
+    overflow-y: scroll;
+    left: 0;
+}
+
+#sidenav a {
+    color: var(--text);
+    display: block;
+    padding: 8px 0;
+    text-decoration: none;
+    text-align: center;
+    font-weight: 700;
+}
+
+#sidenav a.here {
+    border-left: 7px solid var(--hl_text);
+    color: var(--hl_text);
+    font-weight: 700;
+}
+
+#sidenav a:last-child {
+    margin-bottom: 20px;
+}
+
+#sidenav .profile {
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+
+#sidenav .profile .name {
+    color: var(--hl_text);
+    font-size: 18px;
+    font-weight: 900;
+}
+
+#sidenav .profile .avatar {
+    display: inline-block;
+    height: 80px;
+    width: 80px;
+    border-radius: 100%;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 8px;
+}
+
+
+@media screen and (orientation:portrait) { 
+    #sidenav_content { width: 72vw; left: -72vw } 
+    #sidenav_content.open { left: 0; } 
+}
+@media screen and (orientation:landscape) { 
+    #sidenav_content { width: 40vw; left: -40vw }
+    #sidenav_content.open { left: 0; }
+}
+
+
+@media (max-width: 960px) {
+    #s_nav {display: flex}
+    nav .r_nav, nav .l_nav a, #suggestion, .ghost_suggestion {display: none}
+    #feed, .ghost_feed {width: 60%}
+    #profile, .ghost_profile {width: 35%}
+}
+
+@media screen and (orientation:portrait) and (max-width: 960px),  (max-height: 480px) and (max-width: 960px)  { 
+    #profile, .ghost_profile, body[data-user] .ghost_feed  { display: none } 
+    body[data-user] #profile {display: block; width: 100%; margin: 0; border-radius: 0; padding-top: 31px;}
+    body[data-user] .fixed {position: static; padding-top: 62px;}
+    body[data-user] main {position: static; padding-top: 7px;}
+
+    #feed, .ghost_feed {width: 100%}
+}
+
+
